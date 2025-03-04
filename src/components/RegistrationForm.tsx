@@ -112,7 +112,7 @@ export default function RegistrationForm() {
 
       console.log('Submitting registration with file...'); // Debug log
 
-      const sheetResponse = await fetch('https://script.google.com/macros/s/AKfycbxjd0eb0QwdqowFxAc3IV370K3B0T8eplr_zQ2O1dDhIMrgJcm4_v54k5GhxWa-BcCw/exec', {
+      const sheetResponse = await fetch(process.env.NEXT_PUBLIC_API_URL || '', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
