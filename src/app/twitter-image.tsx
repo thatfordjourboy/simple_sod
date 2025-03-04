@@ -33,7 +33,7 @@ export default async function Image() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: 'url(https://steamoff.vercel.app/ghana-friends.jpg)',
+            backgroundImage: 'url(https://steamoff.vercel.app/images/happy2.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             opacity: 0.4,

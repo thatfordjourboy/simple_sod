@@ -31,8 +31,8 @@ export default function Location() {
             <Card className="overflow-hidden glass-effect gold-border">
               <div className="relative aspect-video">
                 <Image 
-                  src="/ghana-friends.jpg"
-                  alt="Friends gathering in Ghana"
+                  src="/images/happy1.webp"
+                  alt="Friends laughing and enjoying the party"
                   fill
                   className="object-cover"
                 />

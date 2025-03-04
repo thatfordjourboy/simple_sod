@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 export default function Features() {
   const features = [
@@ -75,6 +76,32 @@ export default function Features() {
           <p className="text-gray-400 max-w-2xl mx-auto">
             SOD 2025 offers a variety of activities designed for relaxation, networking, and fun with your fellow MSc Business Analytics students.
           </p>
+        </motion.div>
+
+        {/* Image section - Added here */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden glass-effect gold-border">
+            <div className="aspect-[16/9] relative">
+              <Image
+                src="/images/happy2.webp"
+                alt="Friends enjoying the party with drinks"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">Create Lasting Memories</h3>
+                <p className="text-lg">Connect with classmates in a relaxed and fun environment</p>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
