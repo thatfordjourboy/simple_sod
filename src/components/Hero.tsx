@@ -113,7 +113,7 @@ export default function Hero() {
             </p>
             <p className="text-lg text-gray-400 mb-8">
               <span className="font-semibold text-primary">Important:</span> Each ticket admits only one person. 
-              All attendees must pay to participate. Event cost is yet to be confirmed.
+              All attendees must pay to participate. Event cost is GH¢250.
             </p>
           </motion.div>
 
