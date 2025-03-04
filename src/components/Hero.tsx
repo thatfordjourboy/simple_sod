@@ -37,29 +37,24 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
-  // Text animation variants
-  const titleVariants = {
-    hidden: { opacity: 0, y: 20 },
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
-        duration: 0.8,
-        ease: "easeOut",
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
       },
     },
   };
 
-  const subtitleVariants = {
+  const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        delay: 0.3,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.8, ease: [0.4, 0.0, 0.2, 1] },
     },
   };
 
@@ -68,36 +63,45 @@ export default function Hero() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        delay: 0.6,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.5, ease: [0.4, 0.0, 0.2, 1] },
+    },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.2 },
+    },
+    tap: {
+      scale: 0.95,
     },
   };
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image */}
+      {/* Background image with parallax effect */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black z-10" />
-        <div 
+        <motion.div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
             backgroundImage: "url('/ghana-house-party.jpg')",
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 20, ease: "linear" }}
         />
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 z-20 text-center">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="container mx-auto px-4 z-20 text-center pt-24 md:pt-16">
+        <motion.div 
+          className="flex flex-col lg:flex-row items-center justify-between gap-12"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            variants={itemVariants}
             className="lg:w-1/2"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gradient">
@@ -116,9 +120,7 @@ export default function Hero() {
           {/* Countdown Timer */}
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto mb-10"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.9 }}
+            variants={itemVariants}
           >
             <CountdownItem value={timeLeft.days} label="Days" />
             <CountdownItem value={timeLeft.hours} label="Hours" />
@@ -128,42 +130,86 @@ export default function Hero() {
 
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            variants={buttonVariants}
-            initial="hidden"
-            animate="visible"
+            variants={itemVariants}
           >
-            <Button
-              asChild
-              size="lg"
-              className="bg-primary hover:bg-primary/80 text-white rounded-full px-8 py-6 text-lg"
+            <motion.div
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
             >
-              <Link href="/register">Register Now</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="border-white text-white hover:bg-white/10 rounded-full px-8 py-6 text-lg"
+              <Button
+                asChild
+                size="lg"
+                className="bg-primary hover:bg-primary/80 text-white rounded-full px-8 py-6 text-lg"
+              >
+                <Link href="/register">Register Now</Link>
+              </Button>
+            </motion.div>
+            
+            <motion.div
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
             >
-              <Link href="/faqs">Learn More</Link>
-            </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white text-white hover:bg-white/10 rounded-full px-8 py-6 text-lg"
+              >
+                <Link href="/faqs">Learn More</Link>
+              </Button>
+            </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Animated particles or confetti effect */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        {/* We'll implement this with a library or custom animation later */}
-      </div>
+      {/* Animated particles effect */}
+      <Particles />
     </div>
   );
 }
 
 function CountdownItem({ value, label }: { value: number; label: string }) {
   return (
-    <div className="glass-effect p-4 rounded-lg">
+    <motion.div 
+      className="glass-effect p-4 rounded-lg"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+    >
       <div className="text-3xl md:text-4xl font-bold text-white">{value}</div>
       <div className="text-sm text-gray-300">{label}</div>
+    </motion.div>
+  );
+}
+
+// Simple animated particles component
+function Particles() {
+  return (
+    <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+      {Array.from({ length: 20 }).map((_, index) => (
+        <motion.div
+          key={index}
+          className="absolute rounded-full bg-primary/20"
+          style={{
+            width: Math.random() * 20 + 5,
+            height: Math.random() * 20 + 5,
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, Math.random() * -100 - 50],
+            x: [0, (Math.random() - 0.5) * 50],
+            opacity: [0, 0.7, 0],
+          }}
+          transition={{
+            duration: Math.random() * 10 + 10,
+            repeat: Infinity,
+            ease: "linear",
+            delay: Math.random() * 5,
+          }}
+        />
+      ))}
     </div>
   );
 } 
