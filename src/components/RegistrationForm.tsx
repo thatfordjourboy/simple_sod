@@ -42,22 +42,34 @@ export default function RegistrationForm() {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      
-      const validTypes = ['image/jpeg', 'image/png', 'application/pdf'];
-      if (!validTypes.includes(file.type)) {
-        toast.error("Please upload a valid file (JPEG, PNG, or PDF)");
-        return;
-      }
-      
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error("File size should be less than 5MB");
-        return;
-      }
-      
-      setFormData((prev: FormData) => ({ ...prev, file }));
+    console.log("File input changed", e);
+    
+    // Reset file if the input was cleared
+    if (!e.target.files || e.target.files.length === 0) {
+      console.log("No file selected or file selection cleared");
+      setFormData(prev => ({ ...prev, file: null }));
+      return;
     }
+    
+    const file = e.target.files[0];
+    console.log("File selected:", file.name, file.type, file.size);
+    
+    const validTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+    if (!validTypes.includes(file.type)) {
+      console.error("Invalid file type:", file.type);
+      toast.error("Please upload a valid file (JPEG, PNG, or PDF)");
+      return;
+    }
+    
+    if (file.size > 5 * 1024 * 1024) {
+      console.error("File too large:", file.size);
+      toast.error("File size should be less than 5MB");
+      return;
+    }
+    
+    console.log("Setting file in form data");
+    setFormData(prev => ({ ...prev, file }));
+    toast.success(`File "${file.name}" selected`);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -236,40 +248,21 @@ export default function RegistrationForm() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="paymentProof">Proof of Payment</Label>
-                  <div className="border-2 border-dashed border-gray-700 rounded-lg p-6 text-center hover:border-primary/50 transition-colors">
+                  <Label htmlFor="paymentProof">Payment Proof</Label>
+                  <div className="border-2 border-dashed border-gray-700 rounded-lg p-6 text-center">
                     <input
-                      id="paymentProof"
                       type="file"
-                      accept=".jpg,.jpeg,.png,.pdf"
+                      id="paymentProof"
+                      name="file"
+                      accept="image/jpeg,image/png,application/pdf"
                       onChange={handleFileChange}
-                      className="hidden"
+                      className="block w-full text-white file:mr-4 file:py-2 file:px-4
+                                file:rounded-md file:border-0 file:text-sm file:font-semibold
+                                file:bg-primary file:text-white hover:file:bg-primary/80"
                     />
-                    <label
-                      htmlFor="paymentProof"
-                      className="cursor-pointer flex flex-col items-center justify-center"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-10 h-10 text-gray-400 mb-2"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
-                        />
-                      </svg>
-                      <span className="text-gray-400 mb-1">
-                        {formData.file ? formData.file.name : "Click to upload payment proof"}
-                      </span>
-                      <span className="text-gray-500 text-sm">
-                        (JPEG, PNG, PDF - Max 5MB)
-                      </span>
-                    </label>
+                    <p className="mt-2 text-gray-500 text-sm">
+                      {formData.file ? `Selected: ${formData.file.name}` : "JPEG, PNG, PDF - Max 5MB"}
+                    </p>
                   </div>
                 </div>
 
@@ -291,8 +284,8 @@ export default function RegistrationForm() {
               </p>
               <p className="text-sm text-gray-400 mt-2">
                 For payment details, please contact us at{" "}
-                <a href="mailto:info@sod2025.com" className="text-primary hover:underline">
-                  info@sod2025.com
+                <a href="mailto:steamoffdaycation@gmail.com" className="text-primary hover:underline">
+                  steamoffdaycation@gmail.com
                 </a>
               </p>
               <p className="text-gray-500 mt-2">

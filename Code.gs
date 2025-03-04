@@ -107,13 +107,19 @@ function doPost(e) {
       file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
       console.log('Created file in Drive and set sharing');
       
-      // Get the file URL
+      // Get the file URL and ID
       const fileUrl = file.getUrl();
+      const fileId = file.getId();
       console.log('File URL:', fileUrl);
+      console.log('File ID:', fileId);
       
-      // Convert to a direct download/view URL
-      const webViewUrl = fileUrl.replace(/\/file\/d\/(.+?)\/view\?usp=drivesdk/, '/uc?export=view&id=$1');
-      console.log('Web view URL:', webViewUrl);
+      // Create a direct view link
+      const directLink = `https://drive.google.com/file/d/${fileId}/view`;
+      console.log('Direct link:', directLink);
+      
+      // Create a hyperlink formula for the sheet
+      const hyperlinkFormula = `=HYPERLINK("${directLink}","View Payment Proof")`;
+      console.log('Hyperlink formula:', hyperlinkFormula);
       
       // Prepare the row data with file link
       const rowData = [
@@ -123,7 +129,7 @@ function doPost(e) {
         data.phone,
         data.cohort,
         formattedDate,
-        webViewUrl // Use the web view URL instead
+        hyperlinkFormula // Use a hyperlink formula instead of just the URL
       ];
       
       // Append the row

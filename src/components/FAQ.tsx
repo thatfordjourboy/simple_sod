@@ -12,7 +12,7 @@ export default function FAQ() {
   const faqs = [
     {
       question: "When and where is SOD 2025 taking place?",
-      answer: "SOD 2025 is scheduled for March 6, 2025. The exact location will be a private residence in Accra, Ghana. The specific venue details will be shared with confirmed attendees closer to the event date."
+      answer: "SOD 2025 is scheduled for March 6, 2025. The venue is the New Joko Hotel, Achimota."
     },
     {
       question: "How can I register for the event?",
@@ -20,11 +20,11 @@ export default function FAQ() {
     },
     {
       question: "What is the cost to attend SOD 2025?",
-      answer: "The event cost is yet to be confirmed. Please check back later for pricing information or contact us directly for updates."
+      answer: "The cost for registration is GH¢250. Payment should be made to Telecel cash number: 0500304626. Name on the account is Adwoa Sarpomaa Ntiamoah"
     },
     {
       question: "Is SOD 2025 open to everyone?",
-      answer: "SOD 2025 is exclusively for MSc Business Analytics students at the University of Ghana Business School. All attendees must pay to participate."
+      answer: "SOD 2025 is exclusively for MSc Business Analytics students at the University of Ghana Business School. However, we welcome all students from other departments to attend."
     },
     {
       question: "What should I wear to the event?",
@@ -40,7 +40,7 @@ export default function FAQ() {
     },
     {
       question: "Can I get a refund if I can't attend?",
-      answer: "Tickets are non-refundable but are transferable up to 2 days before the event. Please contact our team at info@sod2025.com to arrange a ticket transfer."
+      answer: "Tickets are non-refundable but are transferable up to 12 hours before the event. Please contact our team at steamoffdaycation@gmail.com to arrange a ticket transfer."
     },
     {
       question: "Will transportation be provided?",
@@ -48,7 +48,7 @@ export default function FAQ() {
     },
     {
       question: "Who do I contact if I have more questions?",
-      answer: "For any additional questions or concerns, please email us at info@sod2025.com, call +233 26 435 5165, or WhatsApp +233 55 348 0047. Our team is available to assist you Monday through Friday, 9 AM to 5 PM."
+      answer: "For any additional questions or concerns, please email us at steamoffdaycation@gmail.com, call +233 26 435 5165, or WhatsApp +233 55 348 0047. Our team is available to assist you."
     }
   ];
 
@@ -97,8 +97,8 @@ export default function FAQ() {
         >
           <p className="text-gray-400">
             Still have questions? Contact us at{" "}
-            <a href="mailto:info@sod2025.com" className="text-primary hover:underline">
-              info@sod2025.com
+            <a href="mailto:steamoffdaycation@gmail.com" className="text-primary hover:underline">
+              steamoffdaycation@gmail.com
             </a>
             {" "}or call/WhatsApp{" "}
             <span className="text-primary">+233 26 435 5165 / +233 55 348 0047</span>

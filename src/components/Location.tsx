@@ -17,7 +17,7 @@ export default function Location() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">Venue</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Join us on March 6, 2025 at our carefully selected venue. The exact location will be revealed to registered guests closer to the event date.
+            Join us on March 6, 2025 at the New Joko Hotel, Achimota. Explore the wonderful combination of friendship and fun with the people who make your life better.
           </p>
         </motion.div>
 
@@ -56,7 +56,7 @@ export default function Location() {
             <div>
               <h3 className="text-xl font-semibold text-white mb-3">Exclusive Event</h3>
               <p className="text-gray-400">
-                SOD 2025 will take place at a private residence in Accra, featuring spacious indoor and outdoor areas, a swimming pool, and comfortable spaces for all planned activities.
+                SOD 2025 will take place at the New Joko Hotel, Achimota, featuring spacious indoor and outdoor areas, a swimming pool, and comfortable spaces for all planned activities.
               </p>
             </div>
 
