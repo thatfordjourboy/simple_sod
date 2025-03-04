@@ -82,7 +82,7 @@ export default function Hero() {
         <motion.div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('/images/happy1.webp')",
+            backgroundImage: "url('/happy1.webp')",
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}

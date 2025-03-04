@@ -89,7 +89,7 @@ export default function Features() {
           <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden glass-effect gold-border">
             <div className="aspect-[16/9] relative">
               <Image
-                src="/images/happy2.webp"
+                src="/happy2.webp"
                 alt="Friends enjoying the party with drinks"
                 fill
                 className="object-cover"
